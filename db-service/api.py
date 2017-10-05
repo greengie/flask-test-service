@@ -14,15 +14,17 @@ class GetData(Resource):
         args = parser.parse_args()
         print (args)
         ip_id = args['id']        
+        try:
+            prediction_class = makeprediction.get_feature(ip_id)
+            # print (type(prediction_class))
 
-        prediction_class = makeprediction.get_feature(ip_id)
-        # print (type(prediction_class))
+            print ("Class is : " + str(prediction_class['value']))
 
-        print ("Class is : " + str(prediction_class['value']))
+            return prediction_class, 200
+        except:
+            return '', 404
 
-        return prediction_class
-
-api.add_resource(GetData, '/getdata')
+api.add_resource(GetData, '/api/getdata')
 
 if __name__ == '__main__':  
     app.run(port=5001,debug=False)
