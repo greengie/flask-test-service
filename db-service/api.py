@@ -18,7 +18,7 @@ class GetData(Resource):
             prediction_class = makeprediction.get_feature(ip_id)
             # print (type(prediction_class))
 
-            print ("Class is : " + str(prediction_class['value']))
+            # print ("Class is : " + str(prediction_class['value']))
 
             return prediction_class, 200
         except:

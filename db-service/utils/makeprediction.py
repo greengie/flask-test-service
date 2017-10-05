@@ -6,7 +6,7 @@ from pyspark.sql import Row
 import json
 
 # warehouse_location points to the default location for managed databases and tables
-warehouse_location = abspath('spark-warehouse')
+# warehouse_location = abspath('spark-warehouse')
 
 spark = SparkSession \
     .builder \
@@ -20,8 +20,9 @@ hiveContext = HiveContext(sc)
 def get_feature(inputId):
     # schema = {'src': ['key, value']}
     print ('get feature')
-    queryString = "SELECT {}, {} FROM src WHERE key={}".format('key', 'value', inputId)
+    queryString = "SELECT * FROM BankTest WHERE id={}".format(inputId)
     results = hiveContext.sql(queryString)
+    results.show()
     # print (type(results.toJSON().collect()))
     # results.toJSON().collect()[0]results.toJSON().collect()[0]
     return json.loads(results.toJSON().collect()[0])
