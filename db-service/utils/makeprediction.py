@@ -20,7 +20,7 @@ hiveContext = HiveContext(sc)
 def get_feature(inputId):
     # schema = {'src': ['key, value']}
     print ('get feature')
-    queryString = "SELECT * FROM BankTest WHERE id={}".format(inputId)
+    queryString = "SELECT nr_employed, pdays, euribor3m, cons_conf_idx, age, month, contact, campaign, poutcome, cons_price_idx, emp_var_rate, day_of_week, education FROM BankTest WHERE id={}".format(inputId)
     results = hiveContext.sql(queryString)
     results.show()
     # print (type(results.toJSON().collect()))
